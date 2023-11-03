@@ -3,7 +3,7 @@ import { useState } from "react";
 import "./App.css";
 
 function App() {
-  const [counters, setCounters] = useState([3, 0]);
+  const [counters, setCounters] = useState([0]);
   // const onClickReset = () => setCounter(0);
 
   return (
@@ -15,34 +15,30 @@ function App() {
               const newCounter = [...counters];
               newCounter.push(counters);
               setCounters(newCounter);
+              console.log(newCounter);
             }}
           >
             Add counter
           </button>
         </div>
-
         <div>
-          {counters.map((counter) => {
-            <div>
-              <button
-                onClick={() => {
-                  setCounters(counters - 1);
-                }}
-              >
-                -
-              </button>
+          <button
+            onClick={() => {
+              setCounters(counters - 1);
+            }}
+          >
+            -
+          </button>
 
-              <span>{counters}</span>
+          <span>{counters}</span>
 
-              <button
-                onClick={() => {
-                  setCounters(counters + 1);
-                }}
-              >
-                +
-              </button>
-            </div>;
-          })}
+          <button
+            onClick={() => {
+              setCounters(counters + 1);
+            }}
+          >
+            +
+          </button>
         </div>
       </section>
 
