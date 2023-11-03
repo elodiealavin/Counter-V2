@@ -3,8 +3,8 @@ import { useState } from "react";
 import "./App.css";
 
 function App() {
-  const [counter, setCounter] = useState([0]);
-  const onClickReset = () => setCounter(0);
+  const [counters, setCounters] = useState([3, 0]);
+  // const onClickReset = () => setCounter(0);
 
   return (
     <>
@@ -12,40 +12,43 @@ function App() {
         <div>
           <button
             onClick={() => {
-              const newCounter = [...counter];
-              newCounter.push(counter);
-              setCounter(newCounter);
+              const newCounter = [...counters];
+              newCounter.push(counters);
+              setCounters(newCounter);
             }}
           >
-            {" "}
-            Add counter{" "}
+            Add counter
           </button>
         </div>
 
         <div>
-          <button
-            onClick={() => {
-              setCounter(counter - 1);
-            }}
-          >
-            -
-          </button>
+          {counters.map((counter) => {
+            <div>
+              <button
+                onClick={() => {
+                  setCounters(counters - 1);
+                }}
+              >
+                -
+              </button>
 
-          <p>{counter}</p>
+              <span>{counters}</span>
 
-          <button
-            onClick={() => {
-              setCounter(counter + 1);
-            }}
-          >
-            +
-          </button>
-        </div>
-
-        <div>
-          <button onClick={onClickReset}>Reset</button>
+              <button
+                onClick={() => {
+                  setCounters(counters + 1);
+                }}
+              >
+                +
+              </button>
+            </div>;
+          })}
         </div>
       </section>
+
+      {/* <div>
+          <button onClick={onClickReset}>Reset</button>
+        </div> */}
     </>
   );
 }
