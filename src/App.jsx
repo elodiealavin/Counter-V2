@@ -10,41 +10,62 @@ function App() {
     <>
       <section>
         <div>
-          <button
-            onClick={() => {
-              const newCounter = [...counters];
-              newCounter.push(counters);
-              setCounters(newCounter);
-              console.log(newCounter);
-            }}
-          >
-            Add counter
-          </button>
+          {counters.length < 3 && (
+            <button
+              onClick={() => {
+                const newCounter = [...counters];
+                newCounter.push(0);
+                setCounters(newCounter);
+                console.log("valeur", newCounter);
+              }}
+            >
+              Add counter
+            </button>
+          )}
         </div>
+
         <div>
-          <button
-            onClick={() => {
-              setCounters(counters - 1);
-            }}
-          >
-            -
-          </button>
+          {counters.map((counter, index) => {
+            console.log(counter);
+            return (
+              <div key={index}>
+                <button
+                  onClick={() => {
+                    const newCounter = [...counters];
+                    newCounter[index] = newCounter[index] - 1;
+                    setCounters(newCounter);
+                  }}
+                >
+                  -
+                </button>
 
-          <span>{counters}</span>
+                <span>{counter}</span>
 
-          <button
-            onClick={() => {
-              setCounters(counters + 1);
-            }}
-          >
-            +
-          </button>
+                <button
+                  onClick={() => {
+                    const newCounter = [...counters];
+                    newCounter[index] = newCounter[index] + 1;
+                    setCounters(newCounter);
+                  }}
+                >
+                  +
+                </button>
+                <div>
+                  <button
+                    onClick={() => {
+                      const newCounter = [...counters];
+                      newCounter[index] = 0;
+                      setCounters(newCounter);
+                    }}
+                  >
+                    Reset
+                  </button>
+                </div>
+              </div>
+            );
+          })}
         </div>
       </section>
-
-      {/* <div>
-          <button onClick={onClickReset}>Reset</button>
-        </div> */}
     </>
   );
 }
